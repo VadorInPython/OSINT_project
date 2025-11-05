@@ -63,19 +63,5 @@ This project focuses on developing an AI-powered system for maritime vessel dete
 - Implementation of vessel classification
 - Development of tracking capabilities
 
-## Contributing
-Contributions to improve the project are welcome. Please follow these steps:
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
-
-## License
-[To be added]
-
-## Contact
-[Your contact information]
-
 ## Acknowledgments
 - Danish Technical University (DTU)
-- [Add other acknowledgments as needed]
