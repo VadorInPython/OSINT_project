@@ -1,67 +1,34 @@
 # Maritime Vessel Detection using OSINT and Computer Vision
 
 ## Project Overview
-This project focuses on developing an AI-powered system for maritime vessel detection using open-source intelligence (OSINT) principles and computer vision techniques. The system leverages publicly available camera feeds from Danish bridges to detect and analyze ship movements in real-time.
+This project introduces the Danish Maritime Dataset (DMD), a new publicly available benchmark for maritime object detection in high-traffic coastal environments. The system leverages publicly available camera feeds from Danish fixed infrastructure to monitor the Great Belt Strait, one of Northern Europe's busiest international shipping corridors. This project is developed as part of a Master of Science in Autonomous Systems thesis research at the Technical University of Denmark (DTU).
 
 ## Objectives
-- Conduct comprehensive literature review on ship detection methods in computer vision
-- Apply OSINT principles to gather real-world maritime surveillance data
-- Develop robust AI models for ship detection in video streams
-- Create an automated pipeline for data collection and preprocessing
-- Evaluate and optimize model performance for real-world applications
+* Release a high-quality, manually annotated maritime image dataset (DMD) to the public to support research on fixed-infrastructure monitoring.
+* Provide baseline object detection benchmark results using YOLOv8 to establish reference performance for future comparative studies.
+* Address real-world coastal surveillance challenges, including extreme scale variations, varying weather, low-light transitions, and specular sun glare.
 
 ## Methodology
 
-### 1. Literature Review
-- Analysis of current computer vision methods for maritime vessel detection
-- Study of deep learning architectures suitable for maritime surveillance
-- Review of existing datasets and their characteristics
-- Investigation of performance metrics and evaluation methods
+### 1. Data Acquisition & Sensors
+* Data is collected from two stationary vantage points: Camera East located on the east pylon of the Great Belt Bridge (providing a long-range, oblique, high-altitude view) and a camera on the island of Sprogø (providing a sea-level, horizontal view).
+* The continuous camera feeds produce 1280x720 RGB JPG images.
 
-### 2. OSINT Implementation
-- Identification and access of open-source camera feeds from Danish bridges
-- Development of data collection protocols
-- Implementation of ethical considerations and data privacy measures
-- Documentation of data sources and collection methods
+### 2. Data Management
+* All images are systematically annotated by hand with bounding boxes identifying visible maritime vessels.
+* The dataset includes a temporally overlapping subset where both cameras simultaneously observe the waterway, facilitating multi-view research.
 
-### 3. Data Management
-- Creation of automated data collection pipeline
-- Implementation of preprocessing techniques for video feeds
-- Dataset aggregation from multiple open-source repositories
-- Development of data cleaning and validation procedures
-
-### 4. AI Model Development
-- Design and implementation of deep learning architectures
-- Training and validation procedures
-- Performance optimization techniques
-- Real-time processing capabilities
+### 3. AI Model Development
+* The system utilizes the YOLOv8n (nano) one-stage detector implemented via the Ultralytics library to balance computational efficiency with detection accuracy.
+* The model was pretrained on existing large-scale datasets, specifically the Singapore Maritime Dataset (SMD) and SeaShips.
+* Which data augmentation strategies were applied, including HSV photometric distortions, geometric transformations (random rotations and scaling), and mosaic augmentation.
 
 ## Project Structure
-```
-├── demo.ipynb           # Jupyter notebook with model demonstrations
-└── [additional folders] # Dataset and model folders (not tracked in git)
-```
-
-## Technologies Used
-- Python for data processing and model development
-- YOLOv8 for object detection
-- Jupyter Notebooks for analysis and demonstration
-- Git for version control
-
-## Installation & Setup
-[To be added based on project requirements]
-
-## Usage
-[To be added with specific instructions]
-
-## Results
-[To be added as project progresses]
-
-## Future Work
-- Integration with real-time monitoring systems
-- Expansion to additional maritime locations
-- Implementation of vessel classification
-- Development of tracking capabilities
-
-## Acknowledgments
-- Danish Technical University (DTU)
+```text
+├── .gitignore                                  # Git ignore file
+├── README.md                                   # Project documentation
+├── Storebaelt_cameras_acquistions.ipynb        # Data collection from webcams mounted at the Great Belt Bridge
+├── demo.ipynb                                  # Jupyter notebook with model demonstrations
+├── livestream_tracker.py                       # Python script for real-time vessel tracking
+├── notebook_draft.ipynb                        # Experimental and draft analysis notebook
+└── yolov8n.pt                                  # Pretrained YOLOv8 nano model weights
